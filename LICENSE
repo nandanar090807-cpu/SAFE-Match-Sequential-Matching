@@ -1,0 +1,11 @@
+Copyright (c) 2026 Nandan A R. All rights reserved.
+
+The original SAFE-Match policy source, original tests, documentation, and
+original algorithms remain the intellectual property of their author.
+No general license to commercially use or redistribute the original
+contestant code is granted by this notice. Applicable competition assessment
+permissions and applicable laws govern their respective uses.
+
+This notice does not override the separate licenses applicable to included
+third-party components, including the BSD 3-Clause licensed NetworkX and the
+MIT licensed organizer reference toolkit.
