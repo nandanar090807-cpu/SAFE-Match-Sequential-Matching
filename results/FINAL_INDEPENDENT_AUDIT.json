@@ -1,0 +1,97 @@
+{
+  "audit_date": "2026-10-17",
+  "original_archive_sha256": "9292faa959d2ef6ef32d3654d022fe81b1d8daacc3a4cca7a53950a1bde68b5c",
+  "policy_sha256": "3ea3b0f6e054b99067beee4ebe44f45e21cad4bae45b215aec6879d4117e7707",
+  "dockerfile_sha256": "c464b127e31acb1fd2001152883614f489ebe6d5380b3b3ab62a24dea6bb064d",
+  "official_references": {
+    "kit_git_blob": "b0356b84211debdb8fc1c3ea81348a034dd2ddbd",
+    "evaluate_git_blob": "f9fa2617a3ef84da85502ec2bd730185d5049f65"
+  },
+  "tests": {
+    "standard_unit": {
+      "passed": 46,
+      "failed": 0,
+      "executed": true
+    },
+    "isolated_unit": {
+      "passed": 46,
+      "failed": 0,
+      "executed": true
+    },
+    "stress_process": {
+      "passed": 7,
+      "failed": 0,
+      "executed": true
+    },
+    "restricted_process": {
+      "passed": 36,
+      "failed": 0,
+      "maximum_seconds": 0.9679,
+      "maxrss_kb": 108068,
+      "executed": true
+    },
+    "size_and_differential": {
+      "passed": 4,
+      "failed": 0,
+      "details": [
+        {
+          "test": "largest_valid_request_memory_ask",
+          "pass": true,
+          "detail": {
+            "input_bytes": 1048576,
+            "output_bytes": 1048383,
+            "elapsed": 0.0346
+          }
+        },
+        {
+          "test": "largest_valid_request_memory_match",
+          "pass": true,
+          "detail": {
+            "input_bytes": 1048576,
+            "output_bytes": 1048382,
+            "elapsed": 0.0328
+          }
+        },
+        {
+          "test": "official_eligibility_differential_new_24_worlds",
+          "pass": true,
+          "detail": {
+            "pairs": 235797,
+            "mismatches": 0
+          }
+        },
+        {
+          "test": "twenty_days_six_families_action_legality",
+          "pass": true,
+          "detail": {
+            "worlds": 6,
+            "days_per_world": 20,
+            "legal_actions": 649
+          }
+        }
+      ]
+    },
+    "official_kit_instrumented_episode": {
+      "status": "PASS",
+      "calls": 120,
+      "valid": true,
+      "mutual_second_meeting_intention": 0,
+      "ask_cost": 201,
+      "max_call_s": 0.1983,
+      "action_sha256": "c57d2d5bc363e0fdee39a4626e69539aae6d4a246bc86dd1df39ab1cb399254b"
+    },
+    "fresh_seed_1301_benchmark": {
+      "status": "INCOMPLETE",
+      "completed_valid_episodes": 11
+    }
+  },
+  "docker": {
+    "status": "BLOCKED",
+    "reason": "Docker executable and socket not available in working environment",
+    "strict_preflight_exit": 2
+  },
+  "private_tests": {
+    "status": "UNAVAILABLE"
+  },
+  "verdict": "CONDITIONALLY READY FOR DOCKER VALIDATION; NOT SUBMISSION-CERTIFIED"
+}
