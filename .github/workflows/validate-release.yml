@@ -1,0 +1,59 @@
+name: SAFE-Match final archive Docker validation
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'SAFE_Match_Final_Deep_Audited_Release_2026-10-17.zip'
+      - '.github/workflows/validate-release.yml'
+jobs:
+  audited-release:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Verify pinned archive hash and unpack exact release
+        shell: bash
+        run: |
+          echo "a43ecd17f7cdaa65060ef480c9b69ce355802c17885f4484eb4bb5940d39a17e  SAFE_Match_Final_Deep_Audited_Release_2026-10-17.zip" | sha256sum -c -
+          mkdir release
+          unzip -q SAFE_Match_Final_Deep_Audited_Release_2026-10-17.zip -d release
+      - name: Run release tests against vendored package
+        working-directory: release
+        shell: bash
+        run: |
+          python -S verify_vendor.py
+          PYTHONPATH=vendor python -S -m unittest -v
+      - name: Build Docker image from audited bytes
+        working-directory: release
+        run: docker build -t safe-match:submission .
+      - name: Evaluate inside restricted offline Docker
+        working-directory: release
+        run: python evaluate.py --image safe-match:submission --seeds 101 --variants development --output results/container_check.json
+      - name: Strict Docker preflight
+        working-directory: release
+        run: python preflight.py --require-docker
+      - name: Verify all evaluated episodes valid
+        working-directory: release
+        shell: bash
+        run: |
+          python - <<'PY_CHECK'
+          import json
+          data=json.load(open('results/container_check.json'))
+          assert data['summary']['eligible'] is True
+          assert all(ep['valid'] for ep in data['episodes'])
+          print("VALID: official public Docker episode")
+          PY_CHECK
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: safe-match-container-results
+          path: |
+            release/results/container_check.json
+            release/results/preflight_2026-10-17.json
+            release/results/preflight_docker_101.json
+          if-no-files-found: warn
