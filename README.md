@@ -26,3 +26,15 @@ Full instructions, source code, technical report and machine-readable results ar
 Submit an immutable public source reference (full 40-character commit SHA or version-specific archive and SHA-256) and direct report/results URLs via the organizer's **Final submission** GitHub issue form. Publishing this repository does **not** by itself submit an entry to the organizers.
 
 The organizer announcement specified **17 October 2026, 11:59 PM IST** as the final deadline.
+
+## Direct repository files
+
+- [Audited policy source](policy.py)
+- [Dockerfile](Dockerfile)
+- [Technical report](REPORT.md)
+- [Test report](TEST_REPORT.md)
+- [Public matched-seed benchmark JSON](results/public_101_103.json)
+- [Machine-readable final audit](results/FINAL_INDEPENDENT_AUDIT.json)
+- [Archive Docker validation workflow](.github/workflows/validate-release.yml)
+
+The byte-exact archive remains the canonical complete project: the directly visible files are for review; unpack the archive to execute all tests with its bundled `vendor/` dependency and official kit.
