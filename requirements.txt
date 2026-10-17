@@ -1,0 +1,4 @@
+# Exact public dependency version; bundled in vendor/ for network-free Docker builds.
+# Local development: either `python -m pip install -r requirements.txt`
+# or `PYTHONPATH=vendor python -S policy.py` (zero downloads).
+networkx==3.6.1
